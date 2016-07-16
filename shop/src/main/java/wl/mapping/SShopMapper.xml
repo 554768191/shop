@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SShopMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SShop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="BIGINT" />
+    <result column="s_boss_id" property="sBossId" jdbcType="INTEGER" />
+    <result column="s_boss_name" property="sBossName" jdbcType="VARCHAR" />
+    <result column="s_boss_phone" property="sBossPhone" jdbcType="VARCHAR" />
+    <result column="s_boss_email" property="sBossEmail" jdbcType="VARCHAR" />
+    <result column="s_boss_tel" property="sBossTel" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="s_boss_address" property="sBossAddress" jdbcType="VARCHAR" />
+    <result column="about" property="about" jdbcType="VARCHAR" />
+    <result column="dq" property="dq" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, code, s_boss_id, s_boss_name, s_boss_phone, s_boss_email, s_boss_tel, address, 
+    s_boss_address, about, dq, createtime, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_shop
+    where id = #{id,jdbcType=INTEGER} and is_delete = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SShop" >
+    insert into s_shop (id, name, code, 
+      s_boss_id, s_boss_name, s_boss_phone, 
+      s_boss_email, s_boss_tel, address, 
+      s_boss_address, about, dq, 
+      createtime, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=BIGINT}, 
+      #{sBossId,jdbcType=INTEGER}, #{sBossName,jdbcType=VARCHAR}, #{sBossPhone,jdbcType=VARCHAR}, 
+      #{sBossEmail,jdbcType=VARCHAR}, #{sBossTel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{sBossAddress,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, #{dq,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SShop" >
+    insert into s_shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="sBossId != null" >
+        s_boss_id,
+      </if>
+      <if test="sBossName != null" >
+        s_boss_name,
+      </if>
+      <if test="sBossPhone != null" >
+        s_boss_phone,
+      </if>
+      <if test="sBossEmail != null" >
+        s_boss_email,
+      </if>
+      <if test="sBossTel != null" >
+        s_boss_tel,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="sBossAddress != null" >
+        s_boss_address,
+      </if>
+      <if test="about != null" >
+        about,
+      </if>
+      <if test="dq != null" >
+        dq,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=BIGINT},
+      </if>
+      <if test="sBossId != null" >
+        #{sBossId,jdbcType=INTEGER},
+      </if>
+      <if test="sBossName != null" >
+        #{sBossName,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossPhone != null" >
+        #{sBossPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossEmail != null" >
+        #{sBossEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossTel != null" >
+        #{sBossTel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossAddress != null" >
+        #{sBossAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null" >
+        #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="dq != null" >
+        #{dq,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SShop" >
+    update s_shop
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=BIGINT},
+      </if>
+      <if test="sBossId != null" >
+        s_boss_id = #{sBossId,jdbcType=INTEGER},
+      </if>
+      <if test="sBossName != null" >
+        s_boss_name = #{sBossName,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossPhone != null" >
+        s_boss_phone = #{sBossPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossEmail != null" >
+        s_boss_email = #{sBossEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossTel != null" >
+        s_boss_tel = #{sBossTel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossAddress != null" >
+        s_boss_address = #{sBossAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null" >
+        about = #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="dq != null" >
+        dq = #{dq,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SShop" >
+    update s_shop
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=BIGINT},
+      s_boss_id = #{sBossId,jdbcType=INTEGER},
+      s_boss_name = #{sBossName,jdbcType=VARCHAR},
+      s_boss_phone = #{sBossPhone,jdbcType=VARCHAR},
+      s_boss_email = #{sBossEmail,jdbcType=VARCHAR},
+      s_boss_tel = #{sBossTel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      s_boss_address = #{sBossAddress,jdbcType=VARCHAR},
+      about = #{about,jdbcType=VARCHAR},
+      dq = #{dq,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectShopByDq" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_shop
+    where dq = #{dq,jdbcType=VARCHAR} and is_delete = 0
+  </select>
+  
+  <select id="getShopByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_shop
+    where name = #{name,jdbcType=VARCHAR} and is_delete = 0
+  </select>
+</mapper>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SUserApplyMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SUserApply" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="s_user_id" property="sUserId" jdbcType="INTEGER" />
+    <result column="s_user_name" property="sUserName" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="qj_startendtime" property="qjStartendtime" jdbcType="VARCHAR" />
+    <result column="s_apply_type" property="sApplyType" jdbcType="VARCHAR" />
+    <result column="old_worktime" property="oldWorktime" jdbcType="TIMESTAMP" />
+    <result column="new_worktime" property="newWorktime" jdbcType="TIMESTAMP" />
+    <result column="hb_startendtime" property="hbStartendtime" jdbcType="VARCHAR" />
+    <result column="hb_user_id" property="hbUserId" jdbcType="INTEGER" />
+    <result column="is_pass" property="isPass" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="s_shop_id" property="sShopId" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, s_user_id, s_user_name, reason, qj_startendtime, s_apply_type, old_worktime, 
+    new_worktime, hb_startendtime, hb_user_id, is_pass, createtime, s_shop_id, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user_apply
+    where id = #{id,jdbcType=INTEGER} and is_delete = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_user_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SUserApply" >
+    insert into s_user_apply (id, s_user_id, s_user_name, 
+      reason, qj_startendtime, s_apply_type, 
+      old_worktime, new_worktime, hb_startendtime, 
+      hb_user_id, is_pass, createtime, 
+      s_shop_id, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{sUserId,jdbcType=INTEGER}, #{sUserName,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{qjStartendtime,jdbcType=VARCHAR}, #{sApplyType,jdbcType=VARCHAR}, 
+      #{oldWorktime,jdbcType=TIMESTAMP}, #{newWorktime,jdbcType=TIMESTAMP}, #{hbStartendtime,jdbcType=VARCHAR}, 
+      #{hbUserId,jdbcType=INTEGER}, #{isPass,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{sShopId,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SUserApply" >
+    insert into s_user_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sUserId != null" >
+        s_user_id,
+      </if>
+      <if test="sUserName != null" >
+        s_user_name,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="qjStartendtime != null" >
+        qj_startendtime,
+      </if>
+      <if test="sApplyType != null" >
+        s_apply_type,
+      </if>
+      <if test="oldWorktime != null" >
+        old_worktime,
+      </if>
+      <if test="newWorktime != null" >
+        new_worktime,
+      </if>
+      <if test="hbStartendtime != null" >
+        hb_startendtime,
+      </if>
+      <if test="hbUserId != null" >
+        hb_user_id,
+      </if>
+      <if test="isPass != null" >
+        is_pass,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sUserId != null" >
+        #{sUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sUserName != null" >
+        #{sUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="qjStartendtime != null" >
+        #{qjStartendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="sApplyType != null" >
+        #{sApplyType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldWorktime != null" >
+        #{oldWorktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newWorktime != null" >
+        #{newWorktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hbStartendtime != null" >
+        #{hbStartendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="hbUserId != null" >
+        #{hbUserId,jdbcType=INTEGER},
+      </if>
+      <if test="isPass != null" >
+        #{isPass,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sShopId != null" >
+        #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SUserApply" >
+    update s_user_apply
+    <set >
+      <if test="sUserId != null" >
+        s_user_id = #{sUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sUserName != null" >
+        s_user_name = #{sUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="qjStartendtime != null" >
+        qj_startendtime = #{qjStartendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="sApplyType != null" >
+        s_apply_type = #{sApplyType,jdbcType=VARCHAR},
+      </if>
+      <if test="oldWorktime != null" >
+        old_worktime = #{oldWorktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newWorktime != null" >
+        new_worktime = #{newWorktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hbStartendtime != null" >
+        hb_startendtime = #{hbStartendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="hbUserId != null" >
+        hb_user_id = #{hbUserId,jdbcType=INTEGER},
+      </if>
+      <if test="isPass != null" >
+        is_pass = #{isPass,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id = #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SUserApply" >
+    update s_user_apply
+    set s_user_id = #{sUserId,jdbcType=INTEGER},
+      s_user_name = #{sUserName,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      qj_startendtime = #{qjStartendtime,jdbcType=VARCHAR},
+      s_apply_type = #{sApplyType,jdbcType=VARCHAR},
+      old_worktime = #{oldWorktime,jdbcType=TIMESTAMP},
+      new_worktime = #{newWorktime,jdbcType=TIMESTAMP},
+      hb_startendtime = #{hbStartendtime,jdbcType=VARCHAR},
+      hb_user_id = #{hbUserId,jdbcType=INTEGER},
+      is_pass = #{isPass,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      s_shop_id = #{sShopId,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByUserIdAndShopId" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user_apply
+    where s_user_id = #{sUserId} and s_shop_id = #{sShopId} and s_apply_type = #{sApplyType} and is_delete = 0
+    ORDER BY createtime desc
+  </select>
+  
+  <select id="selectByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user_apply
+    where s_shop_id = #{sShopId,jdbcType=INTEGER} and is_pass = 0 and is_delete = 0
+  </select>
+</mapper>

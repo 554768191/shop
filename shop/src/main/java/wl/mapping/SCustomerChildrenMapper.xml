@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SCustomerChildrenMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SCustomerChildren" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="s_customer_id" property="sCustomerId" jdbcType="INTEGER" />
+    <result column="s_customer_name" property="sCustomerName" jdbcType="VARCHAR" />
+    <result column="is_sc" property="isSc" jdbcType="VARCHAR" />
+    <result column="weeks" property="weeks" jdbcType="VARCHAR" />
+    <result column="is_fullterm" property="isFullterm" jdbcType="VARCHAR" />
+    <result column="is_yuntu" property="isYuntu" jdbcType="VARCHAR" />
+    <result column="is_renshen" property="isRenshen" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, birthday, s_customer_id, s_customer_name, is_sc, weeks, is_fullterm, is_yuntu, 
+    is_renshen, createtime, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_customer_children
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_customer_children
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SCustomerChildren" >
+    insert into s_customer_children (id, name, birthday, 
+      s_customer_id, s_customer_name, is_sc, 
+      weeks, is_fullterm, is_yuntu, 
+      is_renshen, createtime, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{sCustomerId,jdbcType=INTEGER}, #{sCustomerName,jdbcType=VARCHAR}, #{isSc,jdbcType=VARCHAR}, 
+      #{weeks,jdbcType=VARCHAR}, #{isFullterm,jdbcType=VARCHAR}, #{isYuntu,jdbcType=VARCHAR}, 
+      #{isRenshen,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SCustomerChildren" >
+    insert into s_customer_children
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="sCustomerId != null" >
+        s_customer_id,
+      </if>
+      <if test="sCustomerName != null" >
+        s_customer_name,
+      </if>
+      <if test="isSc != null" >
+        is_sc,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+      <if test="isFullterm != null" >
+        is_fullterm,
+      </if>
+      <if test="isYuntu != null" >
+        is_yuntu,
+      </if>
+      <if test="isRenshen != null" >
+        is_renshen,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sCustomerId != null" >
+        #{sCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="sCustomerName != null" >
+        #{sCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSc != null" >
+        #{isSc,jdbcType=VARCHAR},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=VARCHAR},
+      </if>
+      <if test="isFullterm != null" >
+        #{isFullterm,jdbcType=VARCHAR},
+      </if>
+      <if test="isYuntu != null" >
+        #{isYuntu,jdbcType=VARCHAR},
+      </if>
+      <if test="isRenshen != null" >
+        #{isRenshen,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SCustomerChildren" >
+    update s_customer_children
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sCustomerId != null" >
+        s_customer_id = #{sCustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="sCustomerName != null" >
+        s_customer_name = #{sCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSc != null" >
+        is_sc = #{isSc,jdbcType=VARCHAR},
+      </if>
+      <if test="weeks != null" >
+        weeks = #{weeks,jdbcType=VARCHAR},
+      </if>
+      <if test="isFullterm != null" >
+        is_fullterm = #{isFullterm,jdbcType=VARCHAR},
+      </if>
+      <if test="isYuntu != null" >
+        is_yuntu = #{isYuntu,jdbcType=VARCHAR},
+      </if>
+      <if test="isRenshen != null" >
+        is_renshen = #{isRenshen,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SCustomerChildren" >
+    update s_customer_children
+    set name = #{name,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      s_customer_id = #{sCustomerId,jdbcType=INTEGER},
+      s_customer_name = #{sCustomerName,jdbcType=VARCHAR},
+      is_sc = #{isSc,jdbcType=VARCHAR},
+      weeks = #{weeks,jdbcType=VARCHAR},
+      is_fullterm = #{isFullterm,jdbcType=VARCHAR},
+      is_yuntu = #{isYuntu,jdbcType=VARCHAR},
+      is_renshen = #{isRenshen,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
