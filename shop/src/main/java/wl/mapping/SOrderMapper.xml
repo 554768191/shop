@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SOrderMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="BIGINT" />
+    <result column="s_user_id" property="sUserId" jdbcType="INTEGER" />
+    <result column="s_user_name" property="sUserName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="startendtime" property="startendtime" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="qd_time" property="qdTime" jdbcType="TIMESTAMP" />
+    <result column="qd_address" property="qdAddress" jdbcType="VARCHAR" />
+    <result column="is_over" property="isOver" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="s_shop_id" property="sShopId" jdbcType="INTEGER" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, s_user_id, s_user_name, address, startendtime, name, tel, money, qd_time, 
+    qd_address, is_over, createtime, is_delete, s_shop_id
+  </sql>
+  <sql id="wl_Column_List">
+  	o.id,
+    o.code, 
+    o.s_user_id as user.id,
+    o.address, 
+    o.startendtime, 
+    o.name, 
+    o.tel, 
+    o.money, 
+    o.qd_time, 
+    o.qd_address, 
+    o.is_over, 
+    o.createtime, 
+    o.is_delete as order.isDelete, 
+    o.s_shop_id as shop.id,
+    u.id,
+    u.name,
+    s.id,
+    s.name,
+    os.s_order_id as order.id,
+    os.s_service_id as service.id
+    ss.id,
+    ss.name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="AllOrderResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="wl_Column_List" />
+    from s_order as o
+    left join s_user as u on user.id = u.id
+    left join s_shop as s on shop.id = s.id
+    left join s_order_service as os on o.id = order.id
+    	left join s_service as ss on service.id = ss.id
+    where o.id = #{id,jdbcType=INTEGER} and order.isDelete = 0
+    ORDER BY o.createtime desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SOrder" >
+    insert into s_order (id, code, s_user_id, 
+      s_user_name, address, startendtime, 
+      name, tel, money, qd_time, 
+      qd_address, is_over, createtime, 
+      is_delete, s_shop_id)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=BIGINT}, #{sUserId,jdbcType=INTEGER}, 
+      #{sUserName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{startendtime,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{money,jdbcType=VARCHAR}, #{qdTime,jdbcType=TIMESTAMP}, 
+      #{qdAddress,jdbcType=VARCHAR}, #{isOver,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER}, #{sShopId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SOrder" useGeneratedKeys="true" keyProperty="id">
+    insert into s_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="sUserId != null" >
+        s_user_id,
+      </if>
+      <if test="sUserName != null" >
+        s_user_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="startendtime != null" >
+        startendtime,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="qdTime != null" >
+        qd_time,
+      </if>
+      <if test="qdAddress != null" >
+        qd_address,
+      </if>
+      <if test="isOver != null" >
+        is_over,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=BIGINT},
+      </if>
+      <if test="sUserId != null" >
+        #{sUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sUserName != null" >
+        #{sUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startendtime != null" >
+        #{startendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="qdTime != null" >
+        #{qdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qdAddress != null" >
+        #{qdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isOver != null" >
+        #{isOver,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="sShopId != null" >
+        #{sShopId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SOrder" >
+    update s_order
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=BIGINT},
+      </if>
+      <if test="sUserId != null" >
+        s_user_id = #{sUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sUserName != null" >
+        s_user_name = #{sUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="startendtime != null" >
+        startendtime = #{startendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="qdTime != null" >
+        qd_time = #{qdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qdAddress != null" >
+        qd_address = #{qdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isOver != null" >
+        is_over = #{isOver,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id = #{sShopId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SOrder" >
+    update s_order
+    set code = #{code,jdbcType=BIGINT},
+      s_user_id = #{sUserId,jdbcType=INTEGER},
+      s_user_name = #{sUserName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      startendtime = #{startendtime,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      qd_time = #{qdTime,jdbcType=TIMESTAMP},
+      qd_address = #{qdAddress,jdbcType=VARCHAR},
+      is_over = #{isOver,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      s_shop_id = #{sShopId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insertMap" parameterType="java.util.HashMap" >
+    insert into s_order_service (s_order_id,s_service_id)
+    values 
+    <foreach collection="serviceList" item="item" index="index" separator="," >  
+        (#{sOrderId},#{item})  
+    </foreach> 
+  </insert>
+  
+  <!-- 根据店面ID查询所有订单 start -->
+  <resultMap id="AllOrderResultMap" type="wl.pojo.SOrder" extends="BaseResultMap">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <association property="user" javaType="wl.pojo.SUser">
+	    	<id property="id" column="u.id"/>
+	        <result property="name" column="u.name"/>
+    </association>
+    <association property="shop" javaType="wl.pojo.SShop">
+	    	<id property="id" column="s.id"/>
+	        <result property="name" column="s.name"/>
+    </association>
+    <collection property="serviceList" javaType="list" ofType="wl.pojo.SService">
+    		<id property="id" column="ss.id"/>
+	        <result property="name" column="ss.name"/>
+    </collection>
+  </resultMap>
+  <select id="selectByShopId" resultMap="AllOrderResultMap"  parameterType="java.lang.Integer" >
+    select 
+    <include refid="wl_Column_List" />
+    from s_order as o
+    left join s_user as u on user.id = u.id
+    left join s_shop as s on shop.id = s.id
+    left join s_order_service as os on o.id = order.id
+    	left join s_service as ss on service.id = ss.id
+    where shop.id = #{sShopId,jdbcType=INTEGER} and order.isDelete = 0
+    ORDER BY o.createtime desc
+  </select>
+  <!-- end -->
+</mapper>

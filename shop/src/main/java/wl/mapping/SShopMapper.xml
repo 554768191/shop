@@ -197,6 +197,13 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
+  <select id="selectByBossId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_shop
+    where s_boss_id = #{sBossTel,jdbcType=VARCHAR} and is_delete = 0
+  </select>  
+  
   <select id="selectShopByDq" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />

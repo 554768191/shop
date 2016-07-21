@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SOrderServiceMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SOrderServiceKey" >
+    <id column="s_order_id" property="sOrderId" jdbcType="INTEGER" />
+    <id column="s_service_id" property="sServiceId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="wl.pojo.SOrderServiceKey" >
+    delete from s_order_service
+    where s_order_id = #{sOrderId,jdbcType=INTEGER}
+      and s_service_id = #{sServiceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SOrderServiceKey" >
+    insert into s_order_service (s_order_id, s_service_id)
+    values (#{sOrderId,jdbcType=INTEGER}, #{sServiceId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SOrderServiceKey" >
+    insert into s_order_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sOrderId != null" >
+        s_order_id,
+      </if>
+      <if test="sServiceId != null" >
+        s_service_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sOrderId != null" >
+        #{sOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="sServiceId != null" >
+        #{sServiceId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
