@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SCustomerMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SCustomer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="BIGINT" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="attr_id" property="attrId" jdbcType="INTEGER" />
+    <result column="attr_url" property="attrUrl" jdbcType="VARCHAR" />
+    <result column="like" property="like" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="s_member_id" property="sMemberId" jdbcType="INTEGER" />
+    <result column="s_member_name" property="sMemberName" jdbcType="VARCHAR" />
+    <result column="s_user_id" property="sUserId" jdbcType="INTEGER" />
+    <result column="s_user_name" property="sUserName" jdbcType="VARCHAR" />
+    <result column="s_shop_id" property="sShopId" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="servicecount" property="servicecount" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, code, sex, attr_id, attr_url, like, tel, phone, address, email, s_member_id, 
+    s_member_name, s_user_id, s_user_name, s_shop_id, source, servicecount, createtime, 
+    is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_customer
+    where id = #{id,jdbcType=INTEGER} and is_delete = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SCustomer" >
+    insert into s_customer (id, name, code, 
+      sex, attr_id, attr_url, 
+      like, tel, phone, address, 
+      email, s_member_id, s_member_name, 
+      s_user_id, s_user_name, s_shop_id, 
+      source, servicecount, createtime, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=BIGINT}, 
+      #{sex,jdbcType=VARCHAR}, #{attrId,jdbcType=INTEGER}, #{attrUrl,jdbcType=VARCHAR}, 
+      #{like,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sMemberId,jdbcType=INTEGER}, #{sMemberName,jdbcType=VARCHAR}, 
+      #{sUserId,jdbcType=INTEGER}, #{sUserName,jdbcType=VARCHAR}, #{sShopId,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{servicecount,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SCustomer" >
+    insert into s_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="attrId != null" >
+        attr_id,
+      </if>
+      <if test="attrUrl != null" >
+        attr_url,
+      </if>
+      <if test="like != null" >
+        like,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="sMemberId != null" >
+        s_member_id,
+      </if>
+      <if test="sMemberName != null" >
+        s_member_name,
+      </if>
+      <if test="sUserId != null" >
+        s_user_id,
+      </if>
+      <if test="sUserName != null" >
+        s_user_name,
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="servicecount != null" >
+        servicecount,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="attrId != null" >
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="attrUrl != null" >
+        #{attrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="like != null" >
+        #{like,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sMemberId != null" >
+        #{sMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="sMemberName != null" >
+        #{sMemberName,jdbcType=VARCHAR},
+      </if>
+      <if test="sUserId != null" >
+        #{sUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sUserName != null" >
+        #{sUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="sShopId != null" >
+        #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="servicecount != null" >
+        #{servicecount,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SCustomer" >
+    update s_customer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="attrId != null" >
+        attr_id = #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="attrUrl != null" >
+        attr_url = #{attrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="like != null" >
+        like = #{like,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sMemberId != null" >
+        s_member_id = #{sMemberId,jdbcType=INTEGER},
+      </if>
+      <if test="sMemberName != null" >
+        s_member_name = #{sMemberName,jdbcType=VARCHAR},
+      </if>
+      <if test="sUserId != null" >
+        s_user_id = #{sUserId,jdbcType=INTEGER},
+      </if>
+      <if test="sUserName != null" >
+        s_user_name = #{sUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id = #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="servicecount != null" >
+        servicecount = #{servicecount,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SCustomer" >
+    update s_customer
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=BIGINT},
+      sex = #{sex,jdbcType=VARCHAR},
+      attr_id = #{attrId,jdbcType=INTEGER},
+      attr_url = #{attrUrl,jdbcType=VARCHAR},
+      like = #{like,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      s_member_id = #{sMemberId,jdbcType=INTEGER},
+      s_member_name = #{sMemberName,jdbcType=VARCHAR},
+      s_user_id = #{sUserId,jdbcType=INTEGER},
+      s_user_name = #{sUserName,jdbcType=VARCHAR},
+      s_shop_id = #{sShopId,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      servicecount = #{servicecount,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBySShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_customer
+    where s_shop_id = #{sShopId,jdbcType=INTEGER} and is_delete = 0
+  </select>
+</mapper>

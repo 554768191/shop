@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SInvitationCodeMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SInvitationCode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="s_boss_id" property="sBossId" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="is_use" property="isUse" jdbcType="INTEGER" />
+    <result column="style" property="style" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, s_boss_id, code, is_use, style, createtime, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_invitation_code
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_invitation_code
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SInvitationCode" >
+    insert into s_invitation_code (id, s_boss_id, code, 
+      is_use, style, createtime, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{sBossId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{isUse,jdbcType=INTEGER}, #{style,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SInvitationCode" >
+    insert into s_invitation_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sBossId != null" >
+        s_boss_id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="isUse != null" >
+        is_use,
+      </if>
+      <if test="style != null" >
+        style,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sBossId != null" >
+        #{sBossId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="style != null" >
+        #{style,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SInvitationCode" >
+    update s_invitation_code
+    <set >
+      <if test="sBossId != null" >
+        s_boss_id = #{sBossId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        is_use = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="style != null" >
+        style = #{style,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SInvitationCode" >
+    update s_invitation_code
+    set s_boss_id = #{sBossId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      is_use = #{isUse,jdbcType=INTEGER},
+      style = #{style,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_invitation_code
+    where 1=1
+    <if test="code != null" >
+    and code = #{code,jdbcType=VARCHAR} 
+    </if>
+    <if test="isUse != null" >
+    and is_use = #{isUse,jdbcType=INTEGER}
+    </if>
+    and is_delete = 0
+  </select>
+</mapper>

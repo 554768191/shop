@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SUserMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="s_shop_id" property="sShopId" jdbcType="INTEGER" />
+    <result column="s_shop_name" property="sShopName" jdbcType="VARCHAR" />
+    <result column="s_role_id" property="sRoleId" jdbcType="INTEGER" />
+    <result column="s_role_name" property="sRoleName" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="attach_id" property="attachId" jdbcType="INTEGER" />
+    <result column="attach_url" property="attachUrl" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="selftel" property="selftel" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="emergency_tel" property="emergencyTel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="about" property="about" jdbcType="VARCHAR" />
+    <result column="strat_end_time" property="stratEndTime" jdbcType="VARCHAR" />
+    <result column="basepay" property="basepay" jdbcType="VARCHAR" />
+    <result column="achievement" property="achievement" jdbcType="VARCHAR" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, s_shop_id, s_shop_name, s_role_id, s_role_name, title, attach_id, 
+    attach_url, tel, selftel, password, emergency_tel, email, sex, birthday, phone, address, 
+    about, strat_end_time, basepay, achievement, notes, createtime, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where id = #{id,jdbcType=INTEGER} and is_delete = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SUser" >
+    insert into s_user (id, code, name, 
+      s_shop_id, s_shop_name, s_role_id, 
+      s_role_name, title, attach_id, 
+      attach_url, tel, selftel, 
+      password, emergency_tel, email, 
+      sex, birthday, phone, 
+      address, about, strat_end_time, 
+      basepay, achievement, notes, 
+      createtime, is_delete)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{sShopId,jdbcType=INTEGER}, #{sShopName,jdbcType=VARCHAR}, #{sRoleId,jdbcType=INTEGER}, 
+      #{sRoleName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{attachId,jdbcType=INTEGER}, 
+      #{attachUrl,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{selftel,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{emergencyTel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{about,jdbcType=VARCHAR}, #{stratEndTime,jdbcType=VARCHAR}, 
+      #{basepay,jdbcType=VARCHAR}, #{achievement,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SUser" >
+    insert into s_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id,
+      </if>
+      <if test="sShopName != null" >
+        s_shop_name,
+      </if>
+      <if test="sRoleId != null" >
+        s_role_id,
+      </if>
+      <if test="sRoleName != null" >
+        s_role_name,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="attachId != null" >
+        attach_id,
+      </if>
+      <if test="attachUrl != null" >
+        attach_url,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="selftel != null" >
+        selftel,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="emergencyTel != null" >
+        emergency_tel,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="about != null" >
+        about,
+      </if>
+      <if test="stratEndTime != null" >
+        strat_end_time,
+      </if>
+      <if test="basepay != null" >
+        basepay,
+      </if>
+      <if test="achievement != null" >
+        achievement,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sShopId != null" >
+        #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="sShopName != null" >
+        #{sShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sRoleId != null" >
+        #{sRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="sRoleName != null" >
+        #{sRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="attachId != null" >
+        #{attachId,jdbcType=INTEGER},
+      </if>
+      <if test="attachUrl != null" >
+        #{attachUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="selftel != null" >
+        #{selftel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyTel != null" >
+        #{emergencyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null" >
+        #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="stratEndTime != null" >
+        #{stratEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="basepay != null" >
+        #{basepay,jdbcType=VARCHAR},
+      </if>
+      <if test="achievement != null" >
+        #{achievement,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SUser" >
+    update s_user
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id = #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="sShopName != null" >
+        s_shop_name = #{sShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sRoleId != null" >
+        s_role_id = #{sRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="sRoleName != null" >
+        s_role_name = #{sRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="attachId != null" >
+        attach_id = #{attachId,jdbcType=INTEGER},
+      </if>
+      <if test="attachUrl != null" >
+        attach_url = #{attachUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="selftel != null" >
+        selftel = #{selftel,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyTel != null" >
+        emergency_tel = #{emergencyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="about != null" >
+        about = #{about,jdbcType=VARCHAR},
+      </if>
+      <if test="stratEndTime != null" >
+        strat_end_time = #{stratEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="basepay != null" >
+        basepay = #{basepay,jdbcType=VARCHAR},
+      </if>
+      <if test="achievement != null" >
+        achievement = #{achievement,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SUser" >
+    update s_user
+    set code = #{code,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      s_shop_id = #{sShopId,jdbcType=INTEGER},
+      s_shop_name = #{sShopName,jdbcType=VARCHAR},
+      s_role_id = #{sRoleId,jdbcType=INTEGER},
+      s_role_name = #{sRoleName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      attach_id = #{attachId,jdbcType=INTEGER},
+      attach_url = #{attachUrl,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      selftel = #{selftel,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      emergency_tel = #{emergencyTel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      about = #{about,jdbcType=VARCHAR},
+      strat_end_time = #{stratEndTime,jdbcType=VARCHAR},
+      basepay = #{basepay,jdbcType=VARCHAR},
+      achievement = #{achievement,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getUserByTel" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where tel = #{tel,jdbcType=VARCHAR} and is_delete=0
+  </select>
+  
+  <select id="selectByTelAndPass" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where tel = #{tel} and password=#{password} and is_delete=0
+  </select>
+  
+  <select id="selectBySShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where s_shop_id = #{sShopId} and is_delete=0
+  </select>
+</mapper>

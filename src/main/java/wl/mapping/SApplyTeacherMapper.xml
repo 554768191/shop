@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wl.dao.SApplyTeacherMapper" >
+  <resultMap id="BaseResultMap" type="wl.pojo.SApplyTeacher" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="s_shop_id" property="sShopId" jdbcType="INTEGER" />
+    <result column="s_shop_name" property="sShopName" jdbcType="VARCHAR" />
+    <result column="s_boss_id" property="sBossId" jdbcType="INTEGER" />
+    <result column="s_boss_name" property="sBossName" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="startendtime" property="startendtime" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="step" property="step" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, s_shop_id, s_shop_name, s_boss_id, s_boss_name, createtime, startendtime, reason, 
+    count, dept_id, status, step, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_apply_teacher
+    where id = #{id,jdbcType=INTEGER} and is_delete = 0 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_apply_teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="wl.pojo.SApplyTeacher" >
+    insert into s_apply_teacher (id, s_shop_id, s_shop_name, 
+      s_boss_id, s_boss_name, createtime, 
+      startendtime, reason, count, 
+      dept_id, status, step, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{sShopId,jdbcType=INTEGER}, #{sShopName,jdbcType=VARCHAR}, 
+      #{sBossId,jdbcType=INTEGER}, #{sBossName,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{startendtime,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{count,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{step,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="wl.pojo.SApplyTeacher" useGeneratedKeys="true" keyProperty="id">
+    insert into s_apply_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sShopId != null" >
+        s_shop_id,
+      </if>
+      <if test="sShopName != null" >
+        s_shop_name,
+      </if>
+      <if test="sBossId != null" >
+        s_boss_id,
+      </if>
+      <if test="sBossName != null" >
+        s_boss_name,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="startendtime != null" >
+        startendtime,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="step != null" >
+        step,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sShopId != null" >
+        #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="sShopName != null" >
+        #{sShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossId != null" >
+        #{sBossId,jdbcType=INTEGER},
+      </if>
+      <if test="sBossName != null" >
+        #{sBossName,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startendtime != null" >
+        #{startendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        #{step,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wl.pojo.SApplyTeacher" >
+    update s_apply_teacher
+    <set >
+      <if test="sShopId != null" >
+        s_shop_id = #{sShopId,jdbcType=INTEGER},
+      </if>
+      <if test="sShopName != null" >
+        s_shop_name = #{sShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="sBossId != null" >
+        s_boss_id = #{sBossId,jdbcType=INTEGER},
+      </if>
+      <if test="sBossName != null" >
+        s_boss_name = #{sBossName,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startendtime != null" >
+        startendtime = #{startendtime,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="step != null" >
+        step = #{step,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wl.pojo.SApplyTeacher" >
+    update s_apply_teacher
+    set s_shop_id = #{sShopId,jdbcType=INTEGER},
+      s_shop_name = #{sShopName,jdbcType=VARCHAR},
+      s_boss_id = #{sBossId,jdbcType=INTEGER},
+      s_boss_name = #{sBossName,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      startendtime = #{startendtime,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      count = #{count,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      step = #{step,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_apply_teacher
+    where s_shop_id = #{sShopId,jdbcType=INTEGER} and is_delete = 0 
+  </select>
+</mapper>
